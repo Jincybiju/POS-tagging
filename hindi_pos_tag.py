@@ -16,7 +16,7 @@ print("Input :: \n ", text)
 
 
 
-
+# method to train hindi model
 def train_hindi_model(model_path):
     train_data = indian.tagged_sents(model_path)
     tnt_pos_tagger = tnt.TnT()
@@ -30,6 +30,7 @@ print("\n\n tagged list BEFORE TRAINING model")
 print(new_tagged)
 
 
+# method to get sentence id from .pos file 
 def get_sentId(model_path):
     ids = re.compile('<Sentence\sid=\d+>')
     with open(model_path, "r+", encoding ="utf8") as temp_f:
@@ -43,7 +44,7 @@ def get_sentId(model_path):
     return id
 
 
-# Function to tag words
+# Function to tockenize and tag words
 def tag_words(model, text):
     tagged = (model.tag(nltk.word_tokenize(text)))
     return tagged
@@ -128,7 +129,6 @@ with open(os.getcwd()+"/result/S_POS_output.txt", "a", encoding="utf8") as outpu
      output_file.write(str(final_tagged))
 
 
-print("\n\nDone....\n\n")
-
-
+print("\nDone....Extracting Kwywords from tagged set\n")
 print(get_keywords(final_tagged))
+print("\nKeywords Done....\n")
